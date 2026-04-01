@@ -40,14 +40,14 @@ def evaluate_grades(data):
     """
     print("\n--- Processing Grades ---")
 
-    # a) Check if all scores are between 0 and 100
+    # Check if all scores are between 0 and 100
     for assignment in data:
         if assignment['score'] < 0 or assignment['score'] > 100:
             print(f"Error: '{assignment['assignment']}' has an invalid score of {assignment['score']}. Must be between 0 and 100.")
             sys.exit(1)
     print("All scores are valid.")
 
-    # b) Validate that all weights add up correctly
+    #  Validate that all weights add up correctly
     total_weight = 0
     formative_weight = 0
     summative_weight = 0
@@ -70,7 +70,7 @@ def evaluate_grades(data):
         sys.exit(1)
     print("All weights are valid.")
 
-    # c) Calculate the final grade and GPA
+    #  Calculate the final grade and GPA
     final_grade = 0
     formative_total = 0
     formative_weight_total = 0
@@ -92,13 +92,13 @@ def evaluate_grades(data):
     formative_average = (formative_total / formative_weight_total) * 100
     summative_average = (summative_total / summative_weight_total) * 100
 
-    # d) Determine Pass/Fail status
+    #  Determine Pass/Fail status
     if formative_average >= 50 and summative_average >= 50:
         status = "PASSED"
     else:
         status = "FAILED"
 
-    # e) Find failed formative assignments eligible for resubmission
+    #  Find failed formative assignments eligible for resubmission
     failed_formative = []
 
     for assignment in data:
@@ -134,8 +134,8 @@ def evaluate_grades(data):
         print("\nNo assignments eligible for resubmission.")
 
 if __name__ == "__main__":
-    # 1. Load the data
+    #  Load the data
     course_data = load_csv_data()
 
-    # 2. Process the features
+    #  Process the features
     evaluate_grades(course_data)
